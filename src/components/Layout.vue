@@ -4,7 +4,7 @@
     <Header></Header>
   </el-header>
   <el-main>
-
+    <router-view></router-view>
   </el-main>
 </el-container>
 </template>
@@ -25,6 +25,7 @@ export default {
 }
 
 .el-main {
+  padding: 0;
   height: calc(100vh - 60px);
   background: #fff0f7;
 }

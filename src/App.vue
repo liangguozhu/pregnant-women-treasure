@@ -15,6 +15,9 @@ export default {
 
 <style>
 html {
+  min-width: 800px;
+  overflow: auto;
+  overflow-y: hidden;
   font-size: 15px;
 }
 body {

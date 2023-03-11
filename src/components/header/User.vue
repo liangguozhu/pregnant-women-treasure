@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <div class="container">
-      <el-button type="warning" round>登录</el-button>
-      <el-button type="warning" round>注册</el-button>
-    </div>
+  <div class="container">
+      <el-button type="text" >登录</el-button>
+      <el-button type="text" >注册</el-button>
   </div>
 </template>
 
@@ -15,6 +13,16 @@ export default {
 
 <style scoped>
 .container {
-  float: right;
+  height: 60px;
+  display: flex;
+  align-items: stretch;
+}
+
+.el-button {
+  padding: 0 15px;
+  color: #fff;
+}
+.el-button:hover {
+  background: #e539ba;
 }
 </style>
