@@ -1,15 +1,29 @@
 <template>
 <div class="nav-container">
-  <el-button type="text">首页</el-button>
-  <el-button type="text">畅所欲言</el-button>
-  <el-button type="text">取经之道</el-button>
-  <el-button type="text">孕妈好物</el-button>
+  <el-button :class="{ active: activePath === '/home' }" type="text" @click="linkTo('/home')">首页</el-button>
+  <el-button :class="{ active: activePath === '/communication' }" type="text" @click="linkTo('/communication')">畅所欲言</el-button>
+  <el-button :class="{ active: activePath === '/blog' }" type="text" @click="linkTo('/blog')">取经之道</el-button>
+  <el-button :class="{ active: activePath === '/store' }" type="text" @click="linkTo('/store')">孕妈好物</el-button>
 </div>
 </template>
 
 <script>
 export default {
-  name: "Nav"
+  name: "Nav",
+  data() {
+    return {
+      activePath: 'home'
+    }
+  },
+  created() {
+    this.activePath = this.$route.path;
+  },
+  methods: {
+    linkTo(path) {
+      this.activePath = path;
+      this.$router.push(path);
+    }
+  }
 }
 </script>
 
@@ -25,5 +39,12 @@ export default {
 }
 .el-button:hover {
   background: #e539ba;
+}
+
+.active {
+  background: #e539ba;
+  color: #409EFF;
+  font-weight: bold;
+  font-size: 16px;
 }
 </style>
