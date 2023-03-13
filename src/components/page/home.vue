@@ -2,7 +2,7 @@
     <div class="home-container">
         <img src="@/assets/images/home.png"/>
         <div class="text">
-            <p style="font-size: 20px;">专为准妈妈搭建的一站式服务平台</p>
+            <p style="font-size: 20px;">服务准妈妈搭建的一站式服务平台</p>
             <p>--畅所欲言 交流心得</p>
             <p>--经验分享 互帮互助</p>
             <p>--孕妈好物 购您所需</p>
