@@ -1,10 +1,32 @@
 <template>
-<div class="blog-container"></div>
+<div class="blog-container">
+  <div class="tab">
+    <span class="tab-item" :class="{ 'active': t === active }" v-for="t in tabs" :key="t" @click="tabChange(t)">{{ t }}</span>
+  </div>
+
+  <Discuss v-if="active === '话题讨论'"></Discuss>
+</div>
 </template>
 
 <script>
+import Discuss from "@/components/page/blog/discuss/discuss";
+
 export default {
-  name: "blog"
+  name: "blog",
+  components: {
+    Discuss
+  },
+  data() {
+    return {
+      tabs: ['话题讨论', '经验分享'],
+      active: '话题讨论'
+    }
+  },
+  methods: {
+    tabChange(t) {
+      this.active = t;
+    }
+  }
 }
 </script>
 
@@ -14,6 +36,32 @@ export default {
   width: 60%;
   height: 100%;
   min-width: 800px;
-  background: #fff;
 }
+.tab {
+  margin-top: 50px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: #fff;
+  padding: 8px 16px;
+}
+
+.tab-item {
+  margin: 0 15px;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.tab-item:hover {
+  background: rgba(238,238,238,.8);
+}
+
+.tab-item.active {
+  font-weight: bold;
+  border-bottom: 2px solid #333;
+}
+
 </style>

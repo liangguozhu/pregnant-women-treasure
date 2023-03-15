@@ -1,8 +1,7 @@
 <template>
 <div class="nav-container">
   <el-button :class="{ active: activePath === '/home' }" type="text" @click="linkTo('/home')">首页</el-button>
-  <el-button :class="{ active: activePath === '/communication' }" type="text" @click="linkTo('/communication')">畅所欲言</el-button>
-  <el-button :class="{ active: activePath === '/blog' }" type="text" @click="linkTo('/blog')">取经之道</el-button>
+  <el-button :class="{ active: activePath === '/blog' }" type="text" @click="linkTo('/blog')">话题</el-button>
   <el-button :class="{ active: activePath === '/store' }" type="text" @click="linkTo('/store')">孕妈好物</el-button>
 </div>
 </template>
