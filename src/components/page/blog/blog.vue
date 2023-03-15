@@ -5,16 +5,18 @@
   </div>
 
   <Discuss v-if="active === '话题讨论'"></Discuss>
+  <Share v-if="active === '经验分享'"></Share>
 </div>
 </template>
 
 <script>
 import Discuss from "@/components/page/blog/discuss/discuss";
+import Share from "@/components/page/blog/share/share"
 
 export default {
   name: "blog",
   components: {
-    Discuss
+    Discuss, Share
   },
   data() {
     return {
@@ -34,8 +36,9 @@ export default {
 .blog-container {
   margin: 0 auto;
   width: 60%;
-  height: 100%;
   min-width: 800px;
+  padding-bottom: 100px;
+  overflow: hidden;
 }
 .tab {
   margin-top: 50px;

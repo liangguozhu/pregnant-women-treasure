@@ -9,47 +9,94 @@
           <span style="margin-right: 10px;">{{i.time}}</span>
           <span>{{i.description}}</span>
         </div>
-        <div>{{i.content}}</div>
+        <div style="margin-bottom: 10px;">{{i.content}}</div>
         <div v-if="i.link" class="link">
           <el-image v-if="i.link.type === 'img'" :src="i.link.src" fit="contain"></el-image>
         </div>
       </div>
     </div>
     <div class="like">
-      <div v-for="j in icons" :key="j">
+      <div v-for="j in icons" :key="j" class="link-item" @click="open(j, i)">
         <i :class="j" style="margin-right: 10px;"></i>
-        <span>{{ count }}</span>
+        <span>{{ 1 }}</span>
       </div>
     </div>
+    <Chat v-if="i.showChat" :comments="i.comments"></Chat>
   </div>
 </div>
 </template>
 
 <script>
+import Chat from './chat.vue';
 export default {
   name: "discuss",
+  components: {
+    Chat
+  },
   data() {
     return {
       icons: ['el-icon-share', 'el-icon-chat-dot-square'],
       datas: [
         {
           key: 1,
-          avatar: '',
+          avatar: '1.png',
           name: '宝妈',
-          description: '111111111111',
+          description: '怀胎十月，一朝分娩',
           time: '1小时前',
-          content: '1111111111111',
+          content: '宝宝还有一个月就出生啦，好紧张好紧张',
           link: {
             type: 'img',
-            src: '@/assets/images/home.png'
-          }
+            src: '1.png'
+          },
+          showChat: false,
+          comments: [
+            {
+              key: 2,
+              avatar: '2.png',
+              name: '宝爷',
+              content: '要抱孙子咯',
+              time: '30分钟前'
+            },
+            {
+              key: 1,
+              avatar: '1.png',
+              name: '宝爸',
+              content: '宝妈辛苦啦♥♥♥♥♥♥♥♥',
+              time: '一小时前'
+            }
+          ]
+        },
+        {
+          key: 2,
+          avatar: '2.png',
+          name: '肖可可',
+          description: '小可小可小可小可',
+          time: '3小时前',
+          content: '要当妈妈啦哈哈哈哈哈~~~~~~~~~~~~',
+          link: {
+            type: 'img',
+            src: '2.png'
+          },
+          showChat: false,
+          comments: [
+            {
+              key: 1,
+              avatar: '1.png',
+              name: '宝爸',
+              content: '宝妈辛苦啦♥♥♥♥♥♥♥♥',
+              time: '一小时前'
+            }
+          ]
         }
       ],
     }
   },
-  computed: {
-    count() {
-      return Math.floor(Math.random() * 100);
+  methods: {
+    open(j, i) {
+      if (j === 'el-icon-chat-dot-square') {
+        i.showChat = !i.showChat;
+        console.log(j, i, i.showChat,  '???')
+      }
     }
   }
 }
@@ -60,6 +107,8 @@ export default {
   border-radius: 5px;
   background: #fff;
   padding: 25px;
+  padding-bottom: 0;
+  margin-bottom: 10px;
 }
 
 .main {
@@ -87,14 +136,23 @@ export default {
 
 .link {
   min-height: 100px;
+  max-height: 200px;
 }
 
 .like {
+  margin-top: 10px;
   border-top: 1px solid #eee;
   display: flex;
+  padding: 10px 0;
   justify-content: space-around;
   align-items: center;
   font-size: 16px;
+}
+
+.link-item {
+  flex: 1;
+  cursor: pointer;
+  text-align: center;
 }
 
 </style>

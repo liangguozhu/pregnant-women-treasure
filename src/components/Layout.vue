@@ -26,7 +26,9 @@ export default {
 
 .el-main {
   padding: 0;
-  height: calc(100vh - 60px);
   background: #fff0f7;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 </style>
