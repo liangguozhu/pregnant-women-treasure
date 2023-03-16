@@ -1,8 +1,8 @@
 <template>
     <div class="home-container">
-        <img src="@/assets/images/home.png"/>
+        <img src="@/assets/images/home.jpg"/>
         <div class="text">
-            <p style="font-size: 20px;">服务准妈妈搭建的一站式服务平台</p>
+            <p style="font-size: 24px;">服务准妈妈搭建的一站式服务平台</p>
             <p>--畅所欲言 交流心得</p>
             <p>--经验分享 互帮互助</p>
             <p>--孕妈好物 购您所需</p>
@@ -34,12 +34,12 @@ img {
 .text {
     text-align: right;
     color: #fff;
-    font-size: 16px;
+    font-size: 18px;
     position: absolute;
     right: 50px;
     top: 0;
     bottom: 0;
     padding: 30px 15px 0;
-    background: rgba(255,255,255,.3);
+    background: rgba(3,3,3,.3);
 }
 </style>

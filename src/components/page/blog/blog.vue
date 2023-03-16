@@ -35,7 +35,7 @@ export default {
 <style scoped>
 .blog-container {
   margin: 0 auto;
-  width: 60%;
+  max-width: 1000px;
   min-width: 800px;
   padding-bottom: 100px;
   overflow: hidden;

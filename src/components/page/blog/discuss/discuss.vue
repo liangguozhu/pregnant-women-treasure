@@ -11,14 +11,18 @@
         </div>
         <div style="margin-bottom: 10px;">{{i.content}}</div>
         <div v-if="i.link" class="link">
-          <el-image v-if="i.link.type === 'img'" :src="i.link.src" fit="contain"></el-image>
+          <el-image v-if="i.link.type === 'img'" :src="i.link.src" fit="contain" style="height: 100%;"></el-image>
         </div>
       </div>
     </div>
     <div class="like">
-      <div v-for="j in icons" :key="j" class="link-item" @click="open(j, i)">
-        <i :class="j" style="margin-right: 10px;"></i>
-        <span>{{ 1 }}</span>
+      <div class="link-item">
+        <i class="el-icon-share" style="margin-right: 10px;"></i>
+        <span>{{ i.shareCount || 0 }}</span>
+      </div>
+      <div class="link-item" @click="open(i)">
+        <i class="el-icon-chat-dot-square" style="margin-right: 10px;"></i>
+        <span>{{ i.comments.length }}</span>
       </div>
     </div>
     <Chat v-if="i.showChat" :comments="i.comments"></Chat>
@@ -48,7 +52,8 @@ export default {
             type: 'img',
             src: '1.png'
           },
-          showChat: false,
+          showChat: true,
+          shareCount: 3,
           comments: [
             {
               key: 2,
@@ -77,13 +82,37 @@ export default {
             type: 'img',
             src: '2.png'
           },
-          showChat: false,
+          showChat: true,
+          shareCount: 2,
           comments: [
             {
               key: 1,
-              avatar: '1.png',
-              name: '宝爸',
+              avatar: '2.png',
+              name: '大可可',
               content: '宝妈辛苦啦♥♥♥♥♥♥♥♥',
+              time: '一小时前'
+            }
+          ]
+        },
+        {
+          key: 3,
+          avatar: '3.jpg',
+          name: '小天使',
+          description: '安吉尔',
+          time: '3小时前',
+          content: '准妈妈应该注意些啥>_<',
+          link: {
+            type: 'img',
+            src: '3.jpg'
+          },
+          showChat: true,
+          shareCount: 2,
+          comments: [
+            {
+              key: 1,
+              avatar: '3.jpg',
+              name: '大恶魔',
+              content: '多喝热水嗷，不能吃辣',
               time: '一小时前'
             }
           ]
@@ -92,11 +121,8 @@ export default {
     }
   },
   methods: {
-    open(j, i) {
-      if (j === 'el-icon-chat-dot-square') {
-        i.showChat = !i.showChat;
-        console.log(j, i, i.showChat,  '???')
-      }
+    open(i) {
+      i.showChat = !i.showChat;
     }
   }
 }
