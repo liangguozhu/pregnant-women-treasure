@@ -5,7 +5,8 @@
     <el-dropdown v-if="isLogin" @command="toOrder">
       <el-button type="text" style="height: 100%;">欢迎， {{ username }}</el-button>
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item>我的订单</el-dropdown-item>
+        <el-dropdown-item command="order">我的订单</el-dropdown-item>
+        <el-dropdown-item command="logout">退出登录</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
 
@@ -93,9 +94,13 @@ export default {
       this.registerVisible = false;
       this.visible = true;
     },
-    toOrder() {
-      console.log('?????????')
-      this.$router.push('/order');
+    toOrder(command) {
+      console.log('?????????', command)
+      if (command === 'logout') {
+        this.isLogin = false;
+        this.$router.push('/home');
+      }
+      command === 'order' && this.$router.push('/order');
     }
   }
 }
