@@ -2,7 +2,12 @@
   <div class="container">
     <el-button type="text" v-if="!isLogin" @click="toLogin">登录</el-button>
     <el-button type="text" v-if="!isLogin" @click="toRegister">注册</el-button>
-    <el-button type="text" v-if="isLogin">欢迎， {{ username }}</el-button>
+    <el-dropdown v-if="isLogin" @command="toOrder">
+      <el-button type="text" style="height: 100%;">欢迎， {{ username }}</el-button>
+      <el-dropdown-menu slot="dropdown">
+        <el-dropdown-item>我的订单</el-dropdown-item>
+      </el-dropdown-menu>
+    </el-dropdown>
 
 
     <el-dialog :visible.sync="visible" title="登录" :center="true" :close-on-click-modal="false" :destroy-on-close="true">
@@ -87,6 +92,10 @@ export default {
     register() {
       this.registerVisible = false;
       this.visible = true;
+    },
+    toOrder() {
+      console.log('?????????')
+      this.$router.push('/order');
     }
   }
 }
