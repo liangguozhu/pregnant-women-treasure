@@ -1,6 +1,6 @@
 <template>
 <div class="container">
-  <div v-for="i in datas" class="item" :key="i.key">
+  <div v-for="(i, index) in datas" class="item" :key="index">
     <div class="main">
       <el-avatar :size="50" :src="i.avatar"></el-avatar>
       <div class="content">
@@ -129,6 +129,13 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  margin: 50px auto 0;
+  max-width: 1000px;
+  min-width: 800px;
+  padding-bottom: 100px;
+  overflow: hidden;
+}
 .item {
   border-radius: 5px;
   background: #fff;
