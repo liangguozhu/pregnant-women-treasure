@@ -95,7 +95,6 @@ export default {
       this.visible = true;
     },
     toOrder(command) {
-      console.log('?????????', command)
       if (command === 'logout') {
         this.isLogin = false;
         this.$router.push('/home');

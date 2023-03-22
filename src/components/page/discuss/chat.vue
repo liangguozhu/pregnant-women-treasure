@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div>
         <el-input v-model="comment" style="margin-bottom: 10px;">
             <template slot="append">
                 <el-button>发表评论</el-button>

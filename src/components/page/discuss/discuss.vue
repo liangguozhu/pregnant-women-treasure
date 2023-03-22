@@ -1,5 +1,19 @@
 <template>
 <div class="container">
+  <div class="search">
+    <el-image src="favicon.png" style="width: 100px; height: 100px;"></el-image>
+    <el-input placeholder="热门话题搜索" style="width: 50%;"></el-input>
+  </div>
+
+  <div class="tab">
+    <span class="tab-item" :class="{ 'active': t === active }" v-for="t in tabs" :key="t" @click="tabChange(t)">{{ t }}</span>
+    <el-button type="primary" style="position: absolute; right: 20px;" @click="openModal">发起话题</el-button>
+  </div>
+
+  <el-dialog title="发起话题" :visible.sync="visible" style="overflow: hidden">
+    <quillEditor v-model="content" style="box-sizing: border-box; width: 100%; height: calc(100% - 100px)"></quillEditor>
+  </el-dialog>
+
   <div v-for="(i, index) in datas" class="item" :key="index">
     <div class="main">
       <el-avatar :size="50" :src="i.avatar"></el-avatar>
@@ -32,14 +46,20 @@
 
 <script>
 import Chat from './chat.vue';
+import { quillEditor } from "vue-quill-editor"
+
 export default {
   name: "discuss",
   components: {
-    Chat
+    Chat, quillEditor
   },
   data() {
     return {
       icons: ['el-icon-share', 'el-icon-chat-dot-square'],
+      visible: false,
+      content: '',
+      active: '热门话题',
+      tabs: ['关注的人', '热门话题', '我参与的'],
       datas: [
         {
           key: 1,
@@ -123,12 +143,24 @@ export default {
   methods: {
     open(i) {
       i.showChat = !i.showChat;
+    },
+    tabChange(t) {
+      this.active = t;
+    },
+    openModal() {
+      this.visible = true;
     }
   }
 }
 </script>
 
 <style scoped>
+.search {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .container {
   margin: 50px auto 0;
   max-width: 1000px;
@@ -186,6 +218,41 @@ export default {
   flex: 1;
   cursor: pointer;
   text-align: center;
+}
+.tab {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: #fff;
+  padding: 8px 16px;
+  position: relative;
+}
+
+.tab-item {
+  margin: 0 15px;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.tab-item:hover {
+  background: rgba(238,238,238,.8);
+}
+
+.tab-item.active {
+  font-weight: bold;
+  border-bottom: 2px solid #333;
+}
+
+
+>>> .el-dialog {
+  width: 80vw;
+}
+>>>.el-dialog__body {
+  height: 60vh;
 }
 
 </style>

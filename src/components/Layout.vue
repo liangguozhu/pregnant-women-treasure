@@ -8,11 +8,11 @@
 
     <div class="chat" :class="showChatBox ? 'show' : 'hide'">
       <div class="ask" @click="contact">
-        联系专家
+        联系客服
       </div>
       <div class="chat-box">
         <div class="chat-header">
-          专家-王女士
+          在线客服
           <i class="el-icon-close" style="float: right; cursor: pointer;" @click="contact"></i>
         </div>
 
@@ -21,7 +21,7 @@
             <msg v-for="i in msgs" :key="i.key" :dir="i.dir" :content="i.content"></msg>
           </div>
           <div class="message-box">
-            <el-input placeholder="您可以直接输入问题向专家提问" v-model="msg">
+            <el-input placeholder="您可以直接输入问题向客服提问" v-model="msg">
               <template slot="append"><span @click="ask" style="cursor:pointer;">发送</span></template>
             </el-input>
           </div>
