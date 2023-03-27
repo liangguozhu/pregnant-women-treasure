@@ -5,7 +5,7 @@
   <el-button :class="{ active: activePath === '/discuss' }" type="text" @click="linkTo('/discuss')">讨论交流</el-button>
   <el-button :class="{ active: activePath === '/store' }" type="text" @click="linkTo('/store')">孕妈好物</el-button>
   <el-button :class="{ active: activePath === '/expert' }" type="text" @click="linkTo('/expert')">提问专家</el-button>
-  <el-button :class="{ active: activePath === '/knowledge' }" type="text" @click="linkTo('/knowledge')">孕妈知识库</el-button>
+  <el-button :class="{ active: activePath === '/knowledge' }" type="text" @click="linkTo('/knowledge')">孕妈指南</el-button>
 </div>
 </template>
 

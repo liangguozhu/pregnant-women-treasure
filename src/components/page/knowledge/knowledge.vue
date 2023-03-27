@@ -1,16 +1,21 @@
 <template>
   <el-card class="container">
     <div slot="header" class="clearfix">
-      <span class="title">孕妈知识库</span>
+      <span style="display: flex; align-items: center; justify-content: space-between">
+        <span class="title">孕妈指南</span>
+        <el-input placeholder="查询指南" style="width: 300px; float: right;">
+          <el-button slot="append" icon="el-icon-search"></el-button>
+        </el-input>
+      </span>
     </div>
     <div v-if="!isDetail">
-      <div class="topic">关于顺产</div>
+      <div class="topic">顺产指南</div>
       <div v-for="(o, i) in sData" :key="i" class="item" @click="toDetail(o)">
         <i class="el-icon-caret-right"></i>
         {{ o.title }}
       </div>
 
-      <div class="topic">关于剖腹产</div>
+      <div class="topic">剖腹产指南</div>
       <div v-for="(o, i) in pData" :key="i" class="item" @click="toDetail(o)">
         <i class="el-icon-caret-right"></i>
         {{ o.title }}
