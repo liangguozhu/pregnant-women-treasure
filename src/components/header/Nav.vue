@@ -12,18 +12,16 @@
 <script>
 export default {
   name: "Nav",
-  data() {
-    return {
-      activePath: 'home'
+  computed: {
+    activePath() {
+      return this.$route.path;
     }
-  },
-  created() {
-    this.activePath = this.$route.path;
   },
   methods: {
     linkTo(path) {
-      this.activePath = path;
       this.$router.push(path);
+      setTimeout(() => {
+      }, 50)
     }
   }
 }

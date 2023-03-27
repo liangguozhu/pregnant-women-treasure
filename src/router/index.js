@@ -8,6 +8,7 @@ import Discuss from "@/components/page/discuss/discuss";
 import Expert from '@/components/page/expert/expert';
 import VueQuillEditor from "vue-quill-editor";
 import Knowledge from "@/components/page/knowledge/knowledge";
+import InspectionRecord from "@/components/page/inspection-record/inspection-record";
 
 Vue.use(VueRouter);
 Vue.use(VueQuillEditor);
@@ -41,6 +42,10 @@ const router = new VueRouter({
         {
             path: '/knowledge',
             component: Knowledge
+        },
+        {
+            path: '/inspection-record',
+            component: InspectionRecord
         },
         { path: '*', redirect: '/home' }
     ]
