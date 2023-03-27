@@ -7,9 +7,7 @@ import Orders from "@/components/page/store/orders";
 import Discuss from "@/components/page/discuss/discuss";
 import Expert from '@/components/page/expert/expert';
 import VueQuillEditor from "vue-quill-editor";
-import 'quill/dist/quill.core.css'
-import 'quill/dist/quill.snow.css'
-import 'quill/dist/quill.bubble.css'
+import Knowledge from "@/components/page/knowledge/knowledge";
 
 Vue.use(VueRouter);
 Vue.use(VueQuillEditor);
@@ -39,6 +37,10 @@ const router = new VueRouter({
         {
             path: '/expert',
             component: Expert
+        },
+        {
+            path: '/knowledge',
+            component: Knowledge
         },
         { path: '*', redirect: '/home' }
     ]
