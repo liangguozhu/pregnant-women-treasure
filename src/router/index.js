@@ -9,6 +9,7 @@ import Expert from '@/components/page/expert/expert';
 import VueQuillEditor from "vue-quill-editor";
 import Knowledge from "@/components/page/knowledge/knowledge";
 import InspectionRecord from "@/components/page/inspection-record/inspection-record";
+import DataRecord from "@/components/page/data-record/data-record";
 
 Vue.use(VueRouter);
 Vue.use(VueQuillEditor);
@@ -46,6 +47,10 @@ const router = new VueRouter({
         {
             path: '/inspection-record',
             component: InspectionRecord
+        },
+        {
+            path: '/data-record',
+            component: DataRecord
         },
         { path: '*', redirect: '/home' }
     ]
