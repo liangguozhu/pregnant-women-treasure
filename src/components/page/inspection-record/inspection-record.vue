@@ -8,6 +8,10 @@
 
     <div class="next">
       <div>
+        怀孕时间： 2023-03-03 
+        <i class="el-icon-edit" style="cursor: pointer;" @click="dialogVisible = true"></i>
+      </div>
+      <div>
         <span>下一次产检: </span>
         <span>{{ records[nextCheck].time }}</span>
       </div>
@@ -30,7 +34,7 @@
     <div style="padding: 10px; background: #eee;">
       <el-calendar>
         <template
-          v-slot:dateCell="{date, data}">
+          v-slot:dateCell="{data}">
           <div :class="{'check-day': checkDays.includes(data.day)}">
             {{ data.day.split('-')[2] }}
             <div v-if="checkDays.includes(data.day)">
@@ -50,7 +54,23 @@
     </div>
     <p>适宜月龄： 怀孕{{8 + 4 * detail.t}}周</p>
     <p>推荐时间： {{ detail.time }}</p>
+    <p>检查项目： {{ detail.content }}</p>
   </div>
+
+  <el-dialog
+    title="修改怀孕时间"
+    :visible.sync="dialogVisible"
+    width="30%">
+    <el-date-picker
+      v-model="pregnantTime"
+      type="date"
+      placeholder="选择日期">
+    </el-date-picker>
+    <span slot="footer" class="dialog-footer">
+      <el-button @click="dialogVisible = false">取 消</el-button>
+      <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+    </span>
+  </el-dialog>
 </div>
 </template>
 
@@ -60,16 +80,18 @@ export default {
   data() {
     return {
       records: [
-        { t: 1, tick: false, content: '需要建立孕妇保健手册，确定孕周推算预产期，评估孕期的高危因素，包括梅毒血清抗体筛查和HIV筛查，血常规，空腹血糖，肝功和肾功，乙型肝炎表面抗原，尿常规、血型、心电图等常规的检查，以及有无地中海贫血的筛查。早期彩超检查来确定宫内的妊娠和孕周', time: '2023-05-26' },
-        { t: 2, tick: false, content: '分析头次产检的检查结果。测量体重、血压、量宫高腹围、听胎心。此阶段进行一项重要的检查，叫唐氏筛查。主要是对胎儿神经管畸形以及染色体异常等进行筛查', time: '2023-06-23' },
-        { t: 3, tick: false, content: '测量体重、血压、量宫高、腹围，还有进行四维彩超的检查以及糖耐量的检查筛查', time: '2023-07-21' },
-        { t: 4, tick: false, content: '进行常规的产科超声检查，血常规检查、尿常规检查', time: '2023-08-18' },
-        { t: 5, tick: false, content: '常规进行体重、血压、宫高、腹围的测量，以及胎心胎位的监测。进行尿常规的检查、白带常规的检查', time: '2023-09-15' },
-        { t: 6, tick: false, content: '进行产科彩超、胎心监测检查等等检查内容。还需要定期地进行胎心监护，及早地发现胎儿宫内缺氧等存在', time: '2023-09-29' },
+        { t: 1, tick: false, project: '询问病史、测量体重和血压、多普勒胎心、尿常规、身体各部分检查、B超、心电图、MDI分泌物、血常规+血型(ABO+RH)、肝功+两对半、血糖、血钙、血脂、丙肝抗体、梅毒反应素、HIV抗体、优生四项 (巨细胞病毒、单纯疤疹病毒、风疹病毒、弓形虫)、微量元素。', content: '需要建立孕妇保健手册，确定孕周推算预产期，评估孕期的高危因素，包括梅毒血清抗体筛查和HIV筛查，血常规，空腹血糖，肝功和肾功，乙型肝炎表面抗原，尿常规、血型、心电图等常规的检查，以及有无地中海贫血的筛查。早期彩超检查来确定宫内的妊娠和孕周', time: '2023-05-26' },
+        { t: 2, tick: false, project: '询问病史、测量体重和血压、多普勒胎心、尿常规、身体各部分检查、B超、心电图、MDI分泌物、血常规+血型(ABO+RH)、肝功+两对半、血糖、血钙、血脂、丙肝抗体、梅毒反应素、HIV抗体、优生四项 (巨细胞病毒、单纯疤疹病毒、风疹病毒、弓形虫)、微量元素。', content: '分析头次产检的检查结果。测量体重、血压、量宫高腹围、听胎心。此阶段进行一项重要的检查，叫唐氏筛查。主要是对胎儿神经管畸形以及染色体异常等进行筛查', time: '2023-06-23' },
+        { t: 3, tick: false, project: '询问病史、测量体重和血压、多普勒胎心、尿常规、身体各部分检查、B超、心电图、MDI分泌物、血常规+血型(ABO+RH)、肝功+两对半、血糖、血钙、血脂、丙肝抗体、梅毒反应素、HIV抗体、优生四项 (巨细胞病毒、单纯疤疹病毒、风疹病毒、弓形虫)、微量元素。', content: '测量体重、血压、量宫高、腹围，还有进行四维彩超的检查以及糖耐量的检查筛查', time: '2023-07-21' },
+        { t: 4, tick: false, project: '询问病史、测量体重和血压、多普勒胎心、尿常规、身体各部分检查、B超、心电图、MDI分泌物、血常规+血型(ABO+RH)、肝功+两对半、血糖、血钙、血脂、丙肝抗体、梅毒反应素、HIV抗体、优生四项 (巨细胞病毒、单纯疤疹病毒、风疹病毒、弓形虫)、微量元素。', content: '进行常规的产科超声检查，血常规检查、尿常规检查', time: '2023-08-18' },
+        { t: 5, tick: false, project: '询问病史、测量体重和血压、多普勒胎心、尿常规、身体各部分检查、B超、心电图、MDI分泌物、血常规+血型(ABO+RH)、肝功+两对半、血糖、血钙、血脂、丙肝抗体、梅毒反应素、HIV抗体、优生四项 (巨细胞病毒、单纯疤疹病毒、风疹病毒、弓形虫)、微量元素。', content: '常规进行体重、血压、宫高、腹围的测量，以及胎心胎位的监测。进行尿常规的检查、白带常规的检查', time: '2023-09-15' },
+        { t: 6, tick: false, project: '询问病史、测量体重和血压、多普勒胎心、尿常规、身体各部分检查、B超、心电图、MDI分泌物、血常规+血型(ABO+RH)、肝功+两对半、血糖、血钙、血脂、丙肝抗体、梅毒反应素、HIV抗体、优生四项 (巨细胞病毒、单纯疤疹病毒、风疹病毒、弓形虫)、微量元素。', content: '进行产科彩超、胎心监测检查等等检查内容。还需要定期地进行胎心监护，及早地发现胎儿宫内缺氧等存在', time: '2023-09-29' },
       ],
       checkDays: [],
       detail: {},
-      detailView: false
+      detailView: false,
+      dialogVisible: false,
+      pregnantTime: new Date('2023-03-03')
     }
   },
   created() {
